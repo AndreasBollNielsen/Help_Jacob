@@ -6,6 +6,7 @@ namespace Help_Jacob
 {
     class ConvertToHTML : IcConvert
     {
+        //method
         public string Convert(string plainText)
         {
             return "" + plainText + "";

@@ -16,11 +16,15 @@ namespace Help_Jacob
         //method that sends data from user
         public void SendEmail(MessageCarrier messageType, Message message,bool IsHtml)
         {
-            ChekUserSettings(messageType, message, IsHtml);
+            //convert to Html if chosen
+            Convert(messageType, message, IsHtml);
+            
+            //send the message
+            SendMessage(messageType, message);
         }
 
         //method for checking html
-        void ChekUserSettings(MessageCarrier messageType, Message message, bool IsHtml)
+        void Convert(MessageCarrier messageType, Message message, bool IsHtml)
         {
             if (IsHtml)
             {
@@ -29,8 +33,7 @@ namespace Help_Jacob
                 message.Body = converter.Convert(message.Body);
             }
 
-            //send the message
-            SendMessage(messageType, message);
+           
         }
 
         //sending the email data to processing
@@ -39,12 +42,14 @@ namespace Help_Jacob
             if (messageType == MessageCarrier.Smtp)
             {
                 SendMessage_SMTP SMTP = new SendMessage_SMTP();
+               
                 //send message via SMTP
                 SMTP.SendMessage(message);
             }
             else if (messageType == MessageCarrier.VMessage)
             {
                 SendMessage_VMessage VMessage = new SendMessage_VMessage();
+               
                 //send message via Vmessage
                 VMessage.SendMessage(message);
             }

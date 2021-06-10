@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Help_Jacob
 {
+    //interface for convertion
     interface IcConvert
     {
         string Convert(string plainText);
